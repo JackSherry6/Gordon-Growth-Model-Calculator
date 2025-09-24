@@ -1,55 +1,42 @@
-# Gordon Growth Model Calculator
+# Gordon Growth Model (GGM) Valuation Tool
 
-A Python application that analyzes a stock’s future value based on dividends using the **Gordon Growth Model**.
-
-## Overview
-
-This program calculates the projected future value of any stock available in the **yfinance** library using the Gordon Growth Model. Key features include:
-
-- **Data Sources**: Historical stock prices, historical dividends, systemic risk, and current market values based on the S&P 500.
-- **Best Use Case**: The model assumes a **constant growth rate**, making it ideal for **well-established companies with stable growth**.
-- **Interface**: A simple **Tkinter GUI** for easy input and results.
-- **Backend**: Uses `yfinance`, `requests`, and `BeautifulSoup` to fetch and process stock and market data.
+This repository provides a Python implementation of the **Gordon Growth Model (GGM)**, with a built-in two-stage extension for high-growth stocks. The script fetches stock and dividend data using the `yfinance` library and estimates the intrinsic value of a stock based on expected dividend growth. Though the Gordon Growth Model is a rough predictor of stock performance, it can still provide useful insight when evaluating potential long-term holdings.
 
 ---
 
-## Installation & Usage
+### Features
+- **Single-stage GGM:** Values dividend-paying stocks under stable growth assumptions.  
+- **Two-stage GGM:** Automatically switches to a two-stage model for high-growth or low-dividend stocks.  
+- **Data-driven growth estimates:** Uses the historical dividend growth rate (when available).  
+- **Fallback mechanisms:** If insufficient dividend data exists, falls back to a user-specified stable growth rate.  
+- **Real-time stock data:** Pulls dividend history, growth rates, and current prices via Yahoo Finance.  
 
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/your-username/Gordon-Growth-Model-Calculator.git
-   cd Gordon-Growth-Model-Calculator
+---
 
-2. **Install required libraries**
-    ```bash
-    pip install yfinance requests beautifulsoup4
-
-(Tkinter is included with most Python distributions. If missing, install via your OS package manager.)
-
-3. **Run the program**
-   ```bash
-   python Gordon_Growth_Model_Calculator.py
-
-## How it works
-  1. Enter the stock symbol (e.g., `AAPL`).
-  2. The program retrieves historical data and calculates the expected future value using the Gordon Growth formula: P=r−gD1​​
-
-      Where:  
-      - `P` = Stock value  
-      - `D1` = Next year’s expected dividend  
-      - `r` = Required rate of return (accounts for systemic risk)  
-      - `g` = Expected constant growth rate
-
-## Requirements
-
+### Requirements
 - Python 3.8+  
-- Tkinter  
-- yfinance  
-- requests  
-- BeautifulSoup4  
+- pip dependencies:  
+  - `yfinance`  
+  - `numpy`  
+
+Install all dependencies using:
+   `pip install yfinance numpy`
 
 ---
 
-## Future Improvements
+### Usage
+1. Clone this repository:
 
-- Include **graphical visualizations** of dividend growth and stock projections.  
+`bash
+git clone https://github.com/yourusername/ggm-valuation.git
+
+cd ggm-valuation`
+
+2. Run the script:
+   
+`bash
+python ggm.py`
+
+3. Enter a stock ticker when prompted (e.g., `AAPL`, `MSFT`, `KO`).
+
+**Example output:** `APPL: Current value: 58.34, Value by standard GGM = $62.11, g = 3.25%, r = 10.00%`
